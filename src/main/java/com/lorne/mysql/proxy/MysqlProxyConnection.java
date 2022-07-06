@@ -2,6 +2,7 @@ package com.lorne.mysql.proxy;
 
 import io.vertx.core.net.NetSocket;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.Base64Utils;
 
 /**
  * @author lorne
@@ -34,13 +35,14 @@ public class MysqlProxyConnection {
         });
         //当收到来自客户端的数据包时，转发给mysql目标服务器
         clientSocket.handler(buffer -> {
-            String msg = new String(buffer.getBytes());
+            String msg = Base64Utils.encodeToString(buffer.getBytes());
+
             log.info("client socket:{}",msg);
             serverSocket.write(buffer);
         });
         //当收到来自mysql目标服务器的数据包时，转发给客户端
         serverSocket.handler(buffer -> {
-            String msg = new String(buffer.getBytes());
+            String msg = Base64Utils.encodeToString(buffer.getBytes());
             log.info("server socket:{}",msg);
             clientSocket.write(buffer);
         });
