@@ -1,4 +1,4 @@
-package com.lorne.mysqlproxy;
+package com.lorne.mysql.proxy;
 
 import io.vertx.core.net.NetSocket;
 import lombok.extern.slf4j.Slf4j;

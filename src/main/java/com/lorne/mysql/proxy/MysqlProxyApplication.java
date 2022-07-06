@@ -1,4 +1,4 @@
-package com.lorne.mysqlproxy;
+package com.lorne.mysql.proxy;
 
 import io.vertx.core.Vertx;
 
